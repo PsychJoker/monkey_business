@@ -6,23 +6,6 @@ from src.functions import log_change, get_numeric_columns, get_object_columns, c
 st.title(":red[Data Preprocessing Dashboard]")
 st.markdown(':blue[Please upload your data and choose target class attribute]')
 
-
-#initialize session states to be used across pages
-if 'upload_toggle' not in st.session_state:
-    st.session_state.upload_toggle = None
-if 'raw_data' not in st.session_state:
-    st.session_state.raw_data = None
-if 'raw_numeric_attrs' not in st.session_state:
-    st.session_state.raw_numeric_attrs = None
-if 'raw_object_attrs' not in st.session_state:
-    st.session_state.raw_object_attrs = None
-if 'class_attr' not in st.session_state:
-    st.session_state.class_attr = None
-if 'change_log' not in st.session_state:
-    st.session_state.change_log = []
-if 'available_columns' not in st.session_state:
-    st.session_state.available_columns = []
-
 #Prompt user to upload data and choose class attribute
 uploaded_file = st.file_uploader("Upload your CSV file", type=['csv'])
 
