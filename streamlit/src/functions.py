@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler, LabelEncoder
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any
 import streamlit as st
+import datetime as dt
 
 #output functions
 
@@ -199,7 +200,26 @@ if 'transformation_registry' not in st.session_state:
     st.session_state.transformation_registry = registry
 
 def log_change(key):
-    if key == 'class_attr':
-        st.session_state.change_log.append(f'Class attribute selected: {st.session_state.class_attr}')
-    if key == 'transform':
-        st.session_state.change_log.append(f'Transformation applied to {st.session_state.transform_column}: {st.session_state.transform_type}')
+    import datetime as dt
+    timestamp = dt.datetime.now().isoformat()
+
+    # Initialise the change log as a list if not already present
+    if "change_log" not in st.session_state:
+        st.session_state.change_log = []
+
+    # Create a new log entry
+    if key == "class_attr":
+        st.session_state.change_log.append({
+            "key": key,
+            "description": f"Class attribute selected: {st.session_state.class_attr}",
+            "timestamp": timestamp
+        })
+    elif key == "transform":
+        st.session_state.change_log.append({
+            "key": key,
+            "description": f"Transformation applied to {st.session_state.transform_column}: {st.session_state.transform_type}",
+            "timestamp": timestamp
+        })
+
+    # Sort the log entries by timestamp
+    st.session_state.change_log.sort(key=lambda entry: entry["timestamp"])

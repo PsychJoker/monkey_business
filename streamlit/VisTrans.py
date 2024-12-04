@@ -9,10 +9,6 @@ if st.session_state.raw_data is None:
 else:
     st.markdown(('### Data Overview'))
 
-    # Initialize transformed data in session state if not exists
-    if 'transformed_data' not in st.session_state:
-        st.session_state.transformed_data = st.session_state.raw_data.copy()
-
     for param in st.session_state.raw_data.columns:
         with st.container(border=True):
             st.markdown(f"#### :blue[{param}]")
