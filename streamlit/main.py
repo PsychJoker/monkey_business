@@ -24,6 +24,14 @@ if 'change_log' not in st.session_state:
     st.session_state.change_log = []
 if 'available_columns' not in st.session_state:
     st.session_state.available_columns = []
+if "data" not in st.session_state:
+    st.session_state.data = []
+if 'transformed_data' not in st.session_state:
+    st.session_state.transformed_data = st.session_state.raw_data
+if 'transform_column' not in st.session_state:
+    st.session_state.transform_column = None
+if 'transform_type' not in st.session_state:
+    st.session_state.transform_type = None
 
 pg = st.navigation([Dashboard, Visualization, Placeholder, ChangeLog])
 
